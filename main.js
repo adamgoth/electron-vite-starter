@@ -1,8 +1,5 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import installExtension, {
-  REACT_DEVELOPER_TOOLS,
-} from 'electron-devtools-installer';
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -18,11 +15,7 @@ function createWindow() {
   win.loadURL('http://localhost:5173'); // Vite's default port
 }
 
-app.whenReady().then(() => {
-  installExtension(REACT_DEVELOPER_TOOLS)
-    .then((name) => console.log(`Added Extension: ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
-
+app.whenReady().then(async () => {
   createWindow();
 
   app.on('activate', () => {
